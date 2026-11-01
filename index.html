@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio interativo de Giulia de Assis Silva (17 anos) — Estudante de TI há 2 anos. Desenvolvedora do jogo Fuga das Sombras, com foco em desenvolvimento e inovação.">
+  <meta name="keywords" content="Giulia de Assis, Giulia de Assis Silva, Portfólio TI, Fuga das Sombras, Tridimensional, Three.js, Programação">
+  <meta name="author" content="Giulia de Assis Silva">
+  <meta name="theme-color" content="#080312">
+
+  <!-- Open Graph / Redes Sociais -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Giulia de Assis | Portfólio Imersivo 3D — Tecnologia da Informação">
+  <meta property="og:description" content="Explore o ambiente 3D e conheça meus projetos, estudos e evolução na área de Tecnologia da Informação.">
+  <meta property="og:url" content="https://antigrafty.vercel.app/">
+
+  <title>Giulia de Assis Silva | Portfólio Imersivo 3D</title>
+
+  <!-- Google Fonts: Space Grotesk, Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos Principais -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Favicon SVG Moderno -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%230e061c'/><circle cx='50' cy='50' r='38' fill='none' stroke='%23ff2a85' stroke-width='6'/><text x='50' y='59' font-size='32' font-family='sans-serif' font-weight='900' fill='%23f8fafc' text-anchor='middle'>GA</text></svg>">
+</head>
+<body>
+  <!-- ========================================================================
+       AMBIENTE DIGITAL 3D (EM TELA CHEIA - ONDE O PROJETO INTEIRO VIVE)
+       ======================================================================== -->
+  <div id="webgl-canvas-container" aria-label="Ambiente 3D Interativo da Sala de TI"></div>
+  <div class="ambient-overlay" aria-hidden="true"></div>
+
+  <!-- HUD de Status da Câmera 3D -->
+  <div class="scene-hud-status" aria-live="polite">
+    <span class="hud-pulse" aria-hidden="true"></span>
+    <span id="camera-view-status">Câmera: Sala de TI • Visão Geral</span>
+  </div>
+
+  <!-- ========================================================================
+       HEADER & NAVEGAÇÃO FIXA
+       ======================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="header-container">
+      <!-- Monograma da Marca -->
+      <a href="#sobre" class="brand-logo" aria-label="Ir para o início do portfólio">
+        <span class="logo-badge">&lt;GA /&gt;</span>
+        <div class="brand-info">
+          <span class="brand-name">Giulia de Assis</span>
+          <span class="brand-status">
+            <span class="status-dot"></span>
+            17 anos • Estudante de TI
+          </span>
+        </div>
+      </a>
+
+      <!-- Menu Principal (3 Opções Obrigatórias) -->
+      <nav id="nav-menu" class="nav-menu" role="navigation" aria-label="Navegação do Portfólio">
+        <a href="#sobre" class="nav-link active">
+          <span class="nav-num">01.</span>
+          <span>Sobre mim</span>
+        </a>
+        <a href="#projetos" class="nav-link">
+          <span class="nav-num">02.</span>
+          <span>Projetos</span>
+        </a>
+        <a href="#contato" class="nav-link">
+          <span class="nav-num">03.</span>
+          <span>Contato</span>
+        </a>
+      </nav>
+
+      <!-- Ações do Cabeçalho: Áudio & Mobile -->
+      <div class="header-actions">
+        <!-- Botão de Áudio Sintético -->
+        <button id="sound-toggle" class="sound-btn" aria-label="Alternar som da interface" aria-pressed="false">
+          <div class="sound-waves" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span class="sound-status">Áudio OFF</span>
+        </button>
+
+        <!-- Toggle Mobile -->
+        <button id="mobile-toggle" class="mobile-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       CONTEÚDO PRINCIPAL (DENTRO DO AMBIENTE 3D)
+       ======================================================================== -->
+  <main id="main-content">
+    <!-- ======================================================================
+         01 — SOBRE MIM
+         ====================================================================== -->
+    <section id="sobre">
+      <div class="container">
+        <!-- Cabeçalho -->
+        <div class="section-header">
+          <span class="section-tag">// 01 — SOBRE MIM</span>
+          <h1 class="section-title">Giulia de Assis Silva</h1>
+          <p class="section-lead">
+            Estudante de Tecnologia da Informação apaixonada por criar soluções funcionais e evoluir tecnicamente.
+          </p>
+        </div>
+
+        <!-- Bloco Principal com o Texto Pessoal -->
+        <div class="about-hero-card">
+          <div class="about-intro-badge">
+            <span>✦</span>
+            <span>INTRODUÇÃO PESSOAL &amp; PROFISSIONAL</span>
+          </div>
+
+          <p class="about-text-narrative">
+            "Eu sou a <strong>Giulia de Assis</strong>, tenho 17 anos e faço curso de TI há dois anos. Nesse tempo, aprendi bastante sobre tecnologia, conheci novas áreas e comecei a desenvolver meus próprios projetos. Ainda tenho muito o que aprender, mas estou sempre buscando novos conhecimentos, colocando minhas ideias em prática e evoluindo um pouco mais a cada dia."
+          </p>
+
+          <div class="about-stat-bar">
+            <div class="stat-item">
+              <span class="stat-label">Idade</span>
+              <span class="stat-val">17 Anos</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Formação</span>
+              <span class="stat-val">Curso de TI (2 Anos)</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Mindset</span>
+              <span class="stat-val">Evolução &amp; Prática</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         02 — PROJETOS
+         ====================================================================== -->
+    <section id="projetos">
+      <div class="container">
+        <!-- Cabeçalho -->
+        <div class="section-header">
+          <span class="section-tag">// 02 — PROJETOS</span>
+          <h2 class="section-title">Galeria de Projetos</h2>
+          <p class="section-lead">
+            Aplicações práticas desenvolvidas para colocar conhecimentos em ação.
+          </p>
+        </div>
+
+        <!-- Projeto Principal: Fuga das Sombras -->
+        <article class="project-card-featured">
+          <!-- Canvas Dinâmico da Simulação do Jogo -->
+          <div class="project-preview-interactive">
+            <canvas id="maze-canvas" aria-label="Simulação viva do labirinto de Fuga das Sombras"></canvas>
+            <div class="preview-badge">
+              <span class="status-dot"></span>
+              <span>Jogo em Tempo Real</span>
+            </div>
+          </div>
+
+          <!-- Informações e Botões do Projeto -->
+          <div class="project-details">
+            <div>
+              <span class="project-badge-type">Projeto Principal • Game para Navegador</span>
+              <h3 class="project-title">Fuga das Sombras</h3>
+              <p class="project-desc">
+                Jogo de sobrevivência em um labirinto, desenvolvido para navegador, no qual o jogador precisa encontrar a saída enquanto administra recursos e explora o ambiente.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Sobrevivência</span>
+                <span class="project-tag">Labirinto</span>
+                <span class="project-tag">Navegador</span>
+                <span class="project-tag">Vercel Deploy</span>
+              </div>
+            </div>
+
+            <!-- Botões de Ação com Efeito de Iluminação -->
+            <div class="project-actions">
+              <a href="https://antigrafty.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Acessar o jogo Fuga das Sombras">
+                <span>Visualizar Projeto</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+
+              <a href="https://github.com/37111-web" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" aria-label="Acessar código do projeto no GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <span>Código no GitHub</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card Preparado para Futuros Projetos -->
+        <div class="project-upcoming-card">
+          <div class="upcoming-info">
+            <h4>Novos Projetos em Desenvolvimento</h4>
+            <p>Estrutura pronta para a publicação de futuros projetos de desenvolvimento, automações e sistemas.</p>
+          </div>
+          <a href="https://github.com/37111-web" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <span>Acompanhar no GitHub</span>
+          </a>
+        </div>
+
+        <!-- Botão para Perfil Completo do GitHub -->
+        <div class="github-banner">
+          <div class="github-banner-text">
+            <h4>Deseja ver todos os repositórios e evolução prática?</h4>
+            <p>Acesse meu perfil completo no GitHub para acompanhar os códigos e novos projetos.</p>
+          </div>
+          <a href="https://github.com/37111-web" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            <span>Acessar Perfil Completo no GitHub</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         03 — CONTATO
+         ====================================================================== -->
+    <section id="contato">
+      <div class="container">
+        <!-- Cabeçalho -->
+        <div class="section-header">
+          <span class="section-tag">// 03 — CONTATO</span>
+          <h2 class="section-title">Vamos Conectar?</h2>
+        </div>
+
+        <div class="contact-wrapper">
+          <!-- Mensagem de Convite para Recrutadores e Profissionais -->
+          <div class="contact-main">
+            <p class="contact-invitation">
+              Se você é um <strong>recrutador, líder técnico ou desenvolvedor</strong> interessado em conhecer estudantes dedicados em início de carreira em Tecnologia da Informação, convido você a explorar meus projetos e conectar-se comigo através dos canais abaixo:
+            </p>
+
+            <!-- Links Rápidos com Ícones Correspondentes -->
+            <div class="contact-links-grid">
+              <!-- Botão GitHub -->
+              <a href="https://github.com/37111-web" target="_blank" rel="noopener noreferrer" class="contact-card-link" aria-label="Acessar meu GitHub">
+                <div class="contact-icon-box" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </div>
+                <div class="contact-card-info">
+                  <span class="contact-platform">GitHub</span>
+                  <span class="contact-handle">@37111-web</span>
+                  <span class="contact-action-hint">Ver repositórios &rarr;</span>
+                </div>
+              </a>
+
+              <!-- Botão Vercel -->
+              <a href="https://vercel.com/37111-9052" target="_blank" rel="noopener noreferrer" class="contact-card-link" aria-label="Acessar meu perfil na Vercel">
+                <div class="contact-icon-box" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L24 22H0L12 1Z"></path></svg>
+                </div>
+                <div class="contact-card-info">
+                  <span class="contact-platform">Vercel</span>
+                  <span class="contact-handle">37111-9052</span>
+                  <span class="contact-action-hint">Ver deploys &rarr;</span>
+                </div>
+              </a>
+            </div>
+
+            <div class="contact-share-wrapper">
+              <button class="btn-share" onclick="copyPortfolioLink()" aria-label="Copiar link do portfólio">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Copiar Link do Portfólio</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       RODAPÉ
+       ======================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-content">
+      <div class="footer-credits">
+        <span>© 2026 <strong>Giulia de Assis Silva</strong>. Todos os direitos reservados.</span>
+      </div>
+
+      <div class="footer-meta">
+        <span>Ambiente Digital 3D Interativo</span>
+        <button class="btn-back-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Voltar ao início">
+          <span>Voltar ao topo</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts: Three.js CDN + Controlador da Cena 3D + Interações -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="three-scene.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
